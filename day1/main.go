@@ -7,6 +7,8 @@ import (
   "net/http"
 	"strconv"
 	"strings"
+  "sort"
+  "math"
 )
 
 func min(slice []int) (int, int, error) {
@@ -103,6 +105,22 @@ func main() {
 
 	// Print the result
 	fmt.Println("Total Distance:", totalDistance)
+
+	// Create a frequency map for the right list
+	frequencyMap := make(map[int]int)
+	for _, num := range right {
+		frequencyMap[num]++
+	}
+
+	// Calculate the total similarity score
+	totalSimilarityScore := 0
+	for _, num := range left {
+		frequency := frequencyMap[num]
+		totalSimilarityScore += num * frequency
+	}
+
+	// Print the result
+	fmt.Println("Total Similarity Score:", totalSimilarityScore)
 
 	// Print the resulting slices
 	// fmt.Println("Left Column:", left)
