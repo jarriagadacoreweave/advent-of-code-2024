@@ -1,14 +1,14 @@
 package main
 
 import (
-  "fmt"
-  "io"
-  "os"
-  "net/http"
+	"fmt"
+	"io"
+	"math"
+	"net/http"
+	"os"
+	"sort"
 	"strconv"
 	"strings"
-  "sort"
-  "math"
 )
 
 func min(slice []int) (int, int, error) {
@@ -30,11 +30,11 @@ func min(slice []int) (int, int, error) {
 }
 
 func main() {
-  url := os.Getenv("AOC_URL")
-  cookieName := os.Getenv("COOKIE_NAME")
-  cookieValue := os.Getenv("COOKIE_VALUE")
+	url := os.Getenv("AOC_URL")
+	cookieName := os.Getenv("COOKIE_NAME")
+	cookieValue := os.Getenv("COOKIE_VALUE")
 
-  req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		return
@@ -62,7 +62,7 @@ func main() {
 
 	fmt.Println("Status Code:", resp.StatusCode)
 
-  // Split the raw data into lines
+	// Split the raw data into lines
 	lines := strings.Split(string(rawData), "\n")
 
 	// Initialize slices for left and right columns
