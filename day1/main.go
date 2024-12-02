@@ -84,15 +84,28 @@ func main() {
 			}
 		}
 	}
+	// Ensure both lists have the same length
+	if len(left) != len(right) {
+		fmt.Println("Error: Lists are not the same length.")
+		return
+	}
+
+	// Sort both lists
+	sort.Ints(left)
+	sort.Ints(right)
+
+	// Compute total distance
+	totalDistance := 0
+	for i := 0; i < len(left); i++ {
+		distance := int(math.Abs(float64(left[i] - right[i])))
+		totalDistance += distance
+	}
+
+	// Print the result
+	fmt.Println("Total Distance:", totalDistance)
 
 	// Print the resulting slices
 	// fmt.Println("Left Column:", left)
 	// fmt.Println("Right Column:", right)
-
-
-  for _, num := range left {
-
-
-
 
 }
