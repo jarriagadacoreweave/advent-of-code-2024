@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 	"os"
-  "strconv"
+	"strconv"
 	"strings"
 )
 
@@ -110,9 +110,9 @@ func main() {
 	}
 
 	fmt.Println("Status Code:", resp.StatusCode)
-  //fmt.Println("Data:")
-  //fmt.Println(string(rawData))
-  reports := processRawData(string(rawData))
+	//fmt.Println("Data:")
+	//fmt.Println(string(rawData))
+	reports := processRawData(string(rawData))
 
 	safeCount := 0
 	for _, report := range reports {
@@ -126,4 +126,3 @@ func main() {
 
 	fmt.Printf("Total safe reports with Problem Dampener: %d\n", safeCount)
 }
-
