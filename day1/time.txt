@@ -1,0 +1,4 @@
+Status Code: 200
+Total Distance: 0
+Total Similarity Score: 0
+./main  0.01s user 0.05s system 16% cpu 0.344 total

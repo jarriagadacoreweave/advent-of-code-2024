@@ -34,6 +34,26 @@ func isSafe(report []int) bool {
 	return true
 }
 
+func isSafeWithDampener(report []int) bool {
+	if isSafe(report) {
+		return true // If already safe, no need to apply the dampener.
+	}
+
+	// Try removing each level and check if the resulting report is safe.
+	for i := 0; i < len(report); i++ {
+		// Create a new report without the current level.
+		newReport := append([]int{}, report[:i]...)
+		newReport = append(newReport, report[i+1:]...)
+
+		// Check if the modified report is safe.
+		if isSafe(newReport) {
+			return true
+		}
+	}
+
+	return false
+}
+
 func processRawData(rawData string) [][]int {
 	lines := strings.Split(strings.TrimSpace(rawData), "\n")
 	var reports [][]int
@@ -94,10 +114,9 @@ func main() {
   //fmt.Println(string(rawData))
   reports := processRawData(string(rawData))
 
-	// Evaluate each report for safety and count safe reports.
 	safeCount := 0
 	for _, report := range reports {
-		if isSafe(report) {
+		if isSafeWithDampener(report) {
 			//fmt.Printf("Report %d: Safe\n", i+1)
 			safeCount++
 		} else {
@@ -105,6 +124,6 @@ func main() {
 		}
 	}
 
-	// Output the total number of safe reports.
-	fmt.Printf("Total safe reports: %d\n", safeCount)
+	fmt.Printf("Total safe reports with Problem Dampener: %d\n", safeCount)
 }
+
